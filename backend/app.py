@@ -5,6 +5,10 @@ from backend.services import login, register
 import os
 import requests
 from flask_migrate import Migrate
+<<<<<<< Updated upstream
+=======
+import requests
+>>>>>>> Stashed changes
 from urllib.parse import urlencode
 
 # Create the Flask application
@@ -91,6 +95,7 @@ def spotify_callback():
 
     if response.status_code != 200:
         return jsonify({'message': 'Failed to retrieve access token from Spotify.'}), response.status_code
+<<<<<<< Updated upstream
 
     # Save tokens in the database
     user_id = session.get('user_id')
@@ -101,6 +106,8 @@ def spotify_callback():
 
     # Redirect to a safe, logged-in page
     return redirect('http://localhost:3000/')
+=======
+>>>>>>> Stashed changes
 
 
 @app.route('/register', methods=['POST', 'GET'])
