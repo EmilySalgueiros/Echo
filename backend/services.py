@@ -1,5 +1,5 @@
 from backend.models import db, User, Profile
-from flask import jsonify
+from flask import jsonify, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -27,6 +27,9 @@ def register(username, password, email, bio):
         new_profile = Profile(user_id=new_user.id, bio=bio)
         db.session.add(new_profile)
         db.session.commit()
+
+        # Log the user in by setting the session
+        session['user_id'] = new_user.id
 
         return {"message": "Registration successful.", "user_id": new_user.id}, 201
     except Exception as e:
